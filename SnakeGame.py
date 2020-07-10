@@ -43,10 +43,10 @@ snakehead.direction = 'up'
 # Defining our snake food - code similar to above
 snakefood = turtle.Turtle()
 snakefood.speed(0)
-snakefood.shape('square')
-snakefood.color('blue')
+snakefood.shape('circle')
+snakefood.color('grey')
 snakefood.penup()
-snakefood.goto(0,150)
+snakefood.goto(0,100)
 
 # Creating a list for segments to increase the size of the snake
 segments = []
@@ -58,7 +58,7 @@ pen.shape('square')
 pen.color('white')
 pen.penup()
 pen.hideturtle()
-pen.goto(0,290)
+pen.goto(0,260)
 pen.write("Score: 0  High Score: 0", align = 'center', font = ('Courier', 24, 'normal'))
 
 # Defining our moving functions
@@ -85,22 +85,22 @@ def move():
     # Tells the snake to move up  when user indicates by 10 blocks
     if snakehead.direction == 'up':
         y = snakehead.ycor()
-        snakehead.sety(y + 10)
+        snakehead.sety(y + 15)
 
     # Tells the snake to move down when user indicates by 10 blocks
     if snakehead.direction == 'down':
         y = snakehead.ycor()
-        snakehead.sety(y - 10)
+        snakehead.sety(y - 15)
 
     # Tells the snake to move left when user indicates by 10 blocks
     if snakehead.direction == 'left':
         x = snakehead.xcor()
-        snakehead.setx(x - 10)
+        snakehead.setx(x - 15)
 
     # Tells the snake to move right when user indicates by 10 blocks
     if snakehead.direction == 'right':
         x = snakehead.xcor()
-        snakehead.setx(x + 10)
+        snakehead.setx(x + 15)
 
 # To get the user's keyboard inputs
 window.listen() # Letting the window listen to user
@@ -117,7 +117,7 @@ while True:
     # BORDER COLLISION - Checking for a collision with the border
     # The following are conditions if snake goes out of border
     if snakehead.xcor() > 290 or snakehead.xcor() < -290 or snakehead.ycor() > 290 or snakehead.ycor() < -290:
-        time.sleep(0.25) # Delays for 1 sec to restart
+        time.sleep(1) # Delays for 1 sec to restart
         snakehead.goto(0,0) # Sends snake back to 0,0
         snakehead.direction = 'stop'
 
@@ -142,22 +142,22 @@ while True:
     # Checking for a collision with the food
     if snakehead.distance(snakefood) < 20:
         # Starts food at a random point - Frame size is 300*300
-        x = random.randint(-250, 250)
-        y = random.randint(-250, 250)
+        x = random.randint(-290, 290)
+        y = random.randint(-290, 290)
         # Moves the food around
         snakefood.goto(x,y)
         # Move the food to a random spot
 
         # add a segment
         new_segment = turtle.Turtle()
-        new_segment.speed(8)
+        new_segment.speed(0)
         new_segment.shape('square')
         new_segment.color('grey')
         new_segment.penup()
         segments.append(new_segment)
 
         # Reducing delay time
-        delay = 0.05
+        delay -= 0.005
 
         # Setting the score to increase by 10
         score += 10
