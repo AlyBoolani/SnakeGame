@@ -37,7 +37,7 @@ snakehead.penup()
 # Head starts off from the middle
 snakehead.goto(0,0)
 # Direction of snake head
-snakehead.direction = 'up'
+snakehead.direction = 'stop'
 
 
 # Defining our snake food - code similar to above
@@ -58,7 +58,7 @@ pen.shape('square')
 pen.color('white')
 pen.penup()
 pen.hideturtle()
-pen.goto(0,260)
+pen.goto(0, 260)
 pen.write("Score: 0  High Score: 0", align = 'center', font = ('Courier', 24, 'normal'))
 
 # Defining our moving functions
@@ -85,22 +85,22 @@ def move():
     # Tells the snake to move up  when user indicates by 10 blocks
     if snakehead.direction == 'up':
         y = snakehead.ycor()
-        snakehead.sety(y + 15)
+        snakehead.sety(y + 20)
 
     # Tells the snake to move down when user indicates by 10 blocks
     if snakehead.direction == 'down':
         y = snakehead.ycor()
-        snakehead.sety(y - 15)
+        snakehead.sety(y - 20)
 
     # Tells the snake to move left when user indicates by 10 blocks
     if snakehead.direction == 'left':
         x = snakehead.xcor()
-        snakehead.setx(x - 15)
+        snakehead.setx(x - 20)
 
     # Tells the snake to move right when user indicates by 10 blocks
     if snakehead.direction == 'right':
         x = snakehead.xcor()
-        snakehead.setx(x + 15)
+        snakehead.setx(x + 20)
 
 # To get the user's keyboard inputs
 window.listen() # Letting the window listen to user
@@ -146,7 +146,6 @@ while True:
         y = random.randint(-290, 290)
         # Moves the food around
         snakefood.goto(x,y)
-        # Move the food to a random spot
 
         # add a segment
         new_segment = turtle.Turtle()
@@ -157,7 +156,7 @@ while True:
         segments.append(new_segment)
 
         # Reducing delay time
-        delay -= 0.005
+        delay -= 0.001
 
         # Setting the score to increase by 10
         score += 10
